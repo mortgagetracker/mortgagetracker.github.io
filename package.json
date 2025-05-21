@@ -1,0 +1,56 @@
+{
+  "name": "MortgageTracker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "gen-pmms": "node scripts/generate-pmms.cjs",
+    "build": "npm run gen-pmms && vite build",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "app": "npm run build && electron ."
+  },
+  "dependencies": {
+    "@observablehq/plot": "^0.6.17",
+    "chart.js": "^4.4.9",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.1",
+    "react": "^19.1.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "d3-dsv": "^3.0.1",
+    "d3-time-format": "^4.1.0",
+    "electron": "^36.2.1",
+    "electron-builder": "^26.0.12",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "node-fetch": "^2.7.0",
+    "vite": "^6.3.5"
+  },
+  "build": {
+    "appId": "com.REG.equitytracker",
+    "mac": {
+      "target": "dmg",
+      "identity": null
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "files": [
+      "dist-frontend",
+      "main.cjs",
+      "package.json"
+    ]
+  }
+}

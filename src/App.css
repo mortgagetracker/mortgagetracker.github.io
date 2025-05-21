@@ -1,0 +1,126 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+body {
+  font-family: 'Fira Code', monospace;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Shared base styles */
+.equity-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-bottom: 30px;
+  font-family: 'Fira Code', monospace; /* Optional: code-like font */
+}
+
+.equity-table th,
+.equity-table td {
+  border: 1px solid;
+  padding: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ─────── LIGHT MODE ─────── */
+.light .equity-table th {
+  background-color: #f5f5f5;
+  color: #1a1a1a;
+}
+
+.light .equity-table td {
+  background-color: #ffffff;
+  color: #333;
+  border-color: #ccc;
+}
+
+.light .equity-table tr:nth-child(even) td {
+  background-color: #f0f0f0;
+}
+
+.light .equity-table tr:hover td {
+  background-color: #ffeaa7;
+  color: #000;
+}
+
+/* ─────── DARK MODE ─────── */
+.dark .equity-table th {
+  background-color: #1e1e1e;
+  color: #dcdcdc;
+  border-color: #3c3c3c;
+}
+
+.dark .equity-table td {
+  background-color: #252526;
+  color: #cccccc;
+  border-color: #3c3c3c;
+}
+
+.dark .equity-table tr:nth-child(even) td {
+  background-color: #2d2d2d;
+}
+
+.dark .equity-table tr:hover td {
+  background-color: #3e4451;
+  color: #ffffff;
+}
+
+body.dark {
+  background-color: #555252;
+  color: #ffffff;
+}
+
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Force light mode styles only for export */
+.light-mode-export {
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
+.light-mode-export * {
+  color: #000 !important;
+  background-color: #fff !important;
+  border-color: #000 !important;
+}
