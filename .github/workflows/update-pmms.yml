@@ -6,7 +6,8 @@ permissions:
 
 on:
   schedule:
-    - cron: '0 2 * * 4'
+        # Every Thursday at 15:00 UTC (one hour after the expected publish time)
+    - cron: '0 15 * * 4'
   workflow_dispatch:
 
 jobs:
