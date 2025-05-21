@@ -6,7 +6,7 @@
   "main": "main.cjs",
   "scripts": {
     "dev": "vite",
-    "gen-pmms": "node scripts/generate-pmms.cjs",
+    "gen-pmms": "node scripts/generate-pmms.mjs",
     "build": "npm run gen-pmms && vite build",
     "preview": "vite preview",
     "electron": "electron .",

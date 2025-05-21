@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Generate new PMMS snapshot
-        run: node scripts/generate-pmms.cjs
+        run: npm run gen-pmms
 
       - name: Commit & push changes
         run: |

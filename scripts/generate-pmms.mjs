@@ -1,14 +1,14 @@
-// scripts/generate-pmms.cjs
-const fetch = require("node-fetch");
-const { csvParse } = require("d3-dsv");
-const { utcParse } = require("d3-time-format");
-const fs = require("fs").promises;
-const path = require("path");
+// scripts/generate-pmms.mjs
+import fetch from "node-fetch";
+import { csvParse } from "d3-dsv";
+import { utcParse } from "d3-time-format";
+import fs from "fs/promises";
+import path from "path";
 
 const PMMS_URL = "https://www.freddiemac.com/pmms/docs/PMMS_history.csv";
 const parseDate = utcParse("%m/%d/%Y");
 
-async function main() {
+try {
   console.log("Fetching PMMS CSV…");
   const res = await fetch(PMMS_URL);
   if (!res.ok) throw new Error(res.statusText);
@@ -23,13 +23,10 @@ async function main() {
     return { date: d.toISOString(), rate30: v30, rate15: v15 };
   });
 
-  // Write into the site root
-  const outPath = path.resolve(__dirname, "../pmms_snapshot.json");
+  const outPath = path.resolve("pmms_snapshot.json");
   await fs.writeFile(outPath, JSON.stringify(data, null, 2), "utf8");
   console.log(`✅ Wrote ${data.length} entries to ${outPath}`);
-}
-
-main().catch(err => {
+} catch (err) {
   console.error(err);
   process.exit(1);
-});
+}
