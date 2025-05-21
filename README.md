@@ -20,8 +20,8 @@ Track your mortgage payments, understand how your money is split between princip
 
 Get the desktop app for your platform:
 
-* **macOS**: [Download DMG](https://github.com/your-username/Mortgage-Tracker/releases/latest/download/MortgageTracker-mac.dmg)
-* **Windows**: [Download EXE](https://github.com/your-username/Mortgage-Tracker/releases/latest/download/MortgageTracker-win.exe)
+* **macOS**: [Download DMG](https://github.com/mortgagetracker/mortgagetracker.github.io/releases/download/v1.0.0/MortgageTracker-0.0.0-arm64.dmg)
+* **Windows**: [Download EXE](https://github.com/mortgagetracker/mortgagetracker.github.io/releases/download/v1.0.0/MortgageTracker.Setup.0.0.0.exe)
 
 *Installers include the latest rate snapshot and offline support.*
 
