@@ -1,12 +1,32 @@
-# React + Vite
+# Mortgage Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Track your mortgage payments, understand how your money is split between principal and interest, and visualize your progress over time.
 
-Currently, two official plugins are available:
+🔧 **Features Included:**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* 🏡 Enter your mortgage details (amount, rate, term)
+* 👥 Add users to log who paid what
+* ➕ Record monthly payments
+* 📅 See a full calendar of payments by month/year
+* 📊 View detailed breakdowns (principal vs interest)
+* 🥧 Visualize contributions with pie charts
+* 📉 View current and historical fixed mortgage rates (30y & 15y) provided by Freddie Mac's PMMS Data
+* 📁 Export a full PDF report for records or sharing
+* 🚀 Explore optional overpayment scenarios
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📥 Download
+
+Get the desktop app for your platform:
+
+* **macOS**: [Download DMG](https://github.com/your-username/Mortgage-Tracker/releases/latest/download/MortgageTracker-mac.dmg)
+* **Windows**: [Download EXE](https://github.com/your-username/Mortgage-Tracker/releases/latest/download/MortgageTracker-win.exe)
+
+*Installers include the latest rate snapshot and offline support.*
+
+---
+
+## ℹ️ Support & Feedback
+
+Encounter an issue or have a suggestion? Open an issue in our [GitHub repo](https://github.com/mortgagetracker/Mortgage-Tracker/issues).
