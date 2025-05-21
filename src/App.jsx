@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import PaymentForm from './components/PaymentForm';
@@ -5,11 +6,10 @@ import PaymentOverview from './components/PaymentOverview';
 import PaymentSummary from './components/PaymentSummary';
 import ProfileSettings from './components/ProfileSettings';
 import Welcome from './components/Welcome';
-import PMMSPlot from './components/PMMSPlot';
 import SummaryCard from './components/SummaryCard';
 import FocusChart from './components/FocusChart';
 import AllTimeChart from "./components/AllTimeChart";
-import { loadPMMS } from './data/pmms';
+import { loadPMMS } from './data/pmms';  // now async
 import './App.css';
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
     return saved ? JSON.parse(saved) : ['Reese'];
   });
 
+  // pmmsData starts null (loading), becomes [] on error or actual array
   const [pmmsData, setPmmsData] = useState(null);
 
   const navStyle = ({ isActive }) => ({
@@ -42,25 +43,20 @@ function App() {
     return localStorage.getItem('theme') || 'light';
   });
 
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
+  // Persist theme and other state
+  useEffect(() => { document.body.className = theme; }, [theme]);
+  useEffect(() => { localStorage.setItem('mortgage', JSON.stringify(mortgage)); }, [mortgage]);
+  useEffect(() => { localStorage.setItem('payments', JSON.stringify(payments)); }, [payments]);
+  useEffect(() => { localStorage.setItem('users', JSON.stringify(users)); }, [users]);
 
+  // **NEW**: fetch PMMS snapshot from GitHub Pages at runtime
   useEffect(() => {
-    localStorage.setItem('mortgage', JSON.stringify(mortgage));
-  }, [mortgage]);
-
-  useEffect(() => {
-    localStorage.setItem('payments', JSON.stringify(payments));
-  }, [payments]);
-
-  useEffect(() => {
-    localStorage.setItem('users', JSON.stringify(users));
-  }, [users]);
-
-  useEffect(() => {
-    const data = loadPMMS();
-    setPmmsData(data);
+    loadPMMS()
+      .then(data => setPmmsData(data))
+      .catch(err => {
+        console.error('Error loading PMMS snapshot:', err);
+        setPmmsData([]);  // show “No data available”
+      });
   }, []);
 
   return (
@@ -115,23 +111,30 @@ function App() {
             </>
           }
         />
-        <Route path="/overview" element={<PaymentSummary payments={payments} mortgage={mortgage} />} />
+        <Route
+          path="/overview"
+          element={<PaymentSummary payments={payments} mortgage={mortgage} />}
+        />
         <Route
           path="/rates"
           element={
-            pmmsData ? (
+            pmmsData === null ? (
+              <p>Loading mortgage rates…</p>
+            ) : pmmsData.length === 0 ? (
+              <p>No rate data available.</p>
+            ) : (
               <>
-                <div style={{ border: '1px solid #ccc', padding: '20px', marginBottom: '30px', position: 'relative', display: 'flex' }}>
-                  <SummaryCard rows={pmmsData} year={30} />
-                  <SummaryCard rows={pmmsData} year={15} />
+                <div style={{ border: '1px solid #ccc', padding: '20px', marginBottom: '30px' }}>
+                  <div style={{ display: 'flex', gap: '16px', marginBottom: '20px' }}>
+                    <SummaryCard rows={pmmsData} year={30} />
+                    <SummaryCard rows={pmmsData} year={15} />
+                  </div>
                   <FocusChart rows={pmmsData} />
                 </div>
-                <div style={{ border: '1px solid #ccc', padding: '20px', marginBottom: '30px' }}>
+                <div style={{ border: '1px solid #ccc', padding: '20px' }}>
                   <AllTimeChart rows={pmmsData} />
                 </div>
               </>
-            ) : (
-              <p>Loading mortgage rates…</p>
             )
           }
         />
