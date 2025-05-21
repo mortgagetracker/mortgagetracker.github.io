@@ -5,7 +5,6 @@ const { utcParse } = require("d3-time-format");
 const fs = require("fs").promises;
 const path = require("path");
 
-// Freddie Mac CSV URL
 const PMMS_URL = "https://www.freddiemac.com/pmms/docs/PMMS_history.csv";
 const parseDate = utcParse("%m/%d/%Y");
 
@@ -24,9 +23,8 @@ async function main() {
     return { date: d.toISOString(), rate30: v30, rate15: v15 };
   });
 
-  const outDir = path.resolve(__dirname, "../src/data");
-  await fs.mkdir(outDir, { recursive: true });
-  const outPath = path.join(outDir, "pmms_snapshot.json");
+  // Write into the site root
+  const outPath = path.resolve(__dirname, "../pmms_snapshot.json");
   await fs.writeFile(outPath, JSON.stringify(data, null, 2), "utf8");
   console.log(`✅ Wrote ${data.length} entries to ${outPath}`);
 }

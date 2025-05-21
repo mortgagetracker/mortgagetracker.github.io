@@ -1,0 +1,35 @@
+name: Weekly PMMS Snapshot
+
+on:
+  schedule:
+    # every Thursday at 02:00 UTC (after Freddie Mac publishes)
+    - cron: '0 2 * * 4'
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Pages repo
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # so the push can authenticate
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install generator deps
+        run: npm ci
+
+      - name: Generate new PMMS snapshot
+        run: node scripts/generate-pmms.cjs
+
+      - name: Commit & push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pmms_snapshot.json
+          git diff --cached --quiet || git commit -m "chore: update PMMS snapshot"
+          git push
