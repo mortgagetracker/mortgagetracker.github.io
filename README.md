@@ -29,4 +29,4 @@ Get the desktop app for your platform:
 
 ## ℹ️ Support & Feedback
 
-Encounter an issue or have a suggestion? Open an issue in our [GitHub repo](https://github.com/mortgagetracker/Mortgage-Tracker/issues).
+Encounter an issue or have a suggestion? Open an issue in our [GitHub repo](https://github.com/mortgagetracker/mortgagetracker.github.io/issues).
